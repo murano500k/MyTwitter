@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import java.util.List;
 
@@ -35,13 +36,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 		final MyTweet tweet = items.get(position);
 		holder.text.setText(tweet.text);
 		holder.username.setText(tweet.userName);
-		if (tweet.getUserImageUrl() != null) PabloPicasso.with(holder.avatar.getContext())
-				.load(tweet.getUserImageUrl())
-				.into(holder.avatar);
-		if (tweet.getImageUrl() != null) PabloPicasso.with(holder.image.getContext())
-				.load(tweet.getImageUrl())
-				.tag(holder.image)
-				.into(holder.image);
+		loadImage(holder.avatar, tweet.getUserImageUrl());
+		loadImage(holder.image1, tweet.getImageUrl1());
+		loadImage(holder.image2, tweet.getImageUrl2());
+		loadImage(holder.image3, tweet.getImageUrl3());
+		loadImage(holder.image4, tweet.getImageUrl4());
+
 		holder.root.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -54,6 +54,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 			}
 		});
 	}
+	public void loadImage(ImageView imageView, String url){
+		PabloPicasso.with(imageView.getContext()).cancelTag(imageView);
+		if (url != null) PabloPicasso.with(imageView.getContext())
+				.load(url)
+				.tag(imageView)
+				.into(imageView);
+	}
+
 
 	@Override
 	public int getItemCount() {
@@ -61,3 +69,4 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder> {
 	}
 
 }
+

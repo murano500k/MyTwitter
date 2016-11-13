@@ -168,8 +168,9 @@ public class TmlActivity extends BaseActivity {
 						status.getSource(),
 						status.getText(),
 						status.getUser().getName(),
-						status.getUser().getProfileImageURL(),
-						extractImageUrl(status.getMediaEntities()));
+						status.getUser().getProfileImageURL());
+
+				tweet=extractImageUrl(status.getMediaEntities(), tweet);
 				tweet.save();
 				tweets.add(tweet);
 				//Log.w("Tweet " + (i + 1), tweet.toString() + "\n\n");
@@ -183,19 +184,22 @@ public class TmlActivity extends BaseActivity {
 
 
 
-	public String extractImageUrl(twitter4j.MediaEntity[] t){
-		String res =null;
-		if(t!=null){
-			for(twitter4j.MediaEntity entity: t){
-				Log.w(TAG, "extractImageType: "+entity.getType());
-				Log.w(TAG, "extractImageUrl: "+entity.getMediaURL());
-				if(entity.getType().contains("photo"))
-					res = entity.getMediaURL();
-				break;
+	public MyTweet extractImageUrl(twitter4j.MediaEntity[] mediaEntities, MyTweet tweet){
+		twitter4j.MediaEntity[] t=new twitter4j.MediaEntity[4];
+		int i  = 0;
+		int j  = 0;
+		for(; i<mediaEntities.length-1 && j<mediaEntities.length-1 ; j++){
+			if(t[j].getType().contains("photo")) {
+				t[i]=mediaEntities[j];
+				i++;
 			}
 		}
-		//Log.w("extractImgUrl", res+"");
-		return res;
+		if(t.length==0) return tweet;
+		if(t[0]!=null) tweet.setImageUrl1(t[0].getMediaURL());
+		if(t[1]!=null) tweet.setImageUrl2(t[1].getMediaURL());
+		if(t[2]!=null) tweet.setImageUrl3(t[2].getMediaURL());
+		if(t[3]!=null) tweet.setImageUrl4(t[3].getMediaURL());
+		return tweet;
 	}
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

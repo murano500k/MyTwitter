@@ -24,29 +24,39 @@ public class MyTweet extends Model {
 	@Column(name = "UserImageUrl")
 	public String userImageUrl;
 
-	@Column(name = "ImageUrl")
-	public String imageUrl;
+	@Column(name = "ImageUrl1")
+	public String imageUrl1;
+
+	@Column(name = "ImageUrl2")
+	public String imageUrl2;
+	@Column(name = "ImageUrl3")
+	public String imageUrl3;
+	@Column(name = "ImageUrl4")
+	public String imageUrl4;
 
 	@Override
 	public String toString() {
 		return "MyTweet{" +
-				"imageUrl='" + imageUrl + '\'' +
-				", tweetId=" + tweetId +
+				"tweetId=" + tweetId +
 				", tweetUrl='" + tweetUrl + '\'' +
 				", text='" + text + '\'' +
 				", userName='" + userName + '\'' +
 				", userImageUrl='" + userImageUrl + '\'' +
+				", imageUrl1='" + imageUrl1 + '\'' +
+				", imageUrl2='" + imageUrl2 + '\'' +
+				", imageUrl3='" + imageUrl3 + '\'' +
+				", imageUrl4='" + imageUrl4 + '\'' +
 				'}';
 	}
 
-	public MyTweet(Long tweetId, String tweetUrl, String text, String userName, String userImageUrl, String imageUrl) {
+	public MyTweet(Long tweetId, String tweetUrl, String text, String userName, String userImageUrl) {
 		this.tweetId = tweetId;
 		this.tweetUrl = tweetUrl;
 		this.text = text;
 		this.userName = userName;
 		this.userImageUrl = userImageUrl;
-		this.imageUrl = imageUrl;
 	}
+
 
 	public String getTweetUrl() {
 		return tweetUrl;
@@ -67,12 +77,36 @@ public class MyTweet extends Model {
 	public MyTweet() {
 	}
 
-	public String getImageUrl() {
-		return imageUrl;
+	public String getImageUrl1() {
+		return imageUrl1;
 	}
 
-	public void setImageUrl(String imageUrl) {
-		this.imageUrl = imageUrl;
+	public String getImageUrl2() {
+		return imageUrl2;
+	}
+
+	public void setImageUrl2(String imageUrl2) {
+		this.imageUrl2 = imageUrl2;
+	}
+
+	public String getImageUrl3() {
+		return imageUrl3;
+	}
+
+	public void setImageUrl3(String imageUrl3) {
+		this.imageUrl3 = imageUrl3;
+	}
+
+	public String getImageUrl4() {
+		return imageUrl4;
+	}
+
+	public void setImageUrl4(String imageUrl4) {
+		this.imageUrl4 = imageUrl4;
+	}
+
+	public void setImageUrl1(String imageUrl1) {
+		this.imageUrl1 = imageUrl1;
 	}
 
 	public String getText() {
